@@ -1,0 +1,34 @@
+package day06
+
+import (
+	"bufio"
+	"strconv"
+	"strings"
+
+	"github.com/Kryszak/aoc2023/common"
+)
+
+func parseSingleValueLine(fileScanner *bufio.Scanner) int {
+	fileScanner.Scan()
+	parsed, _ := strconv.Atoi(strings.Join(strings.Fields(strings.Split(fileScanner.Text(), ":")[1]), ""))
+
+	return parsed
+}
+
+func Part2() int {
+	answer := 1
+
+	fileScanner := common.FileScanner("day_06/input.txt")
+
+	raceTime := parseSingleValueLine(fileScanner)
+	raceDistance := parseSingleValueLine(fileScanner)
+
+	for j := 1; j < raceTime; j++ {
+		distanceTravelled := calculateDistance(j, raceTime)
+		if distanceTravelled > raceDistance {
+			answer++
+		}
+	}
+
+	return answer
+}
