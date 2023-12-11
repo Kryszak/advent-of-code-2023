@@ -6,9 +6,9 @@ import (
 	"github.com/Kryszak/aoc2023/common"
 )
 
-func Part1() int {
+func Part1(path string) int {
 	answer := 0
-	fileScanner := common.FileScanner("day_01/input.txt")
+	fileScanner := common.FileScanner(path)
 
 	for fileScanner.Scan() {
 		line := fileScanner.Text()

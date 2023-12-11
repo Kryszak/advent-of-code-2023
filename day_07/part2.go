@@ -86,10 +86,10 @@ func loadCardsWithJokers(fileScanner *bufio.Scanner) []card {
 	return cards
 }
 
-func Part2() int {
+func Part2(path string) int {
 	answer := 0
 
-	fileScanner := common.FileScanner("day_07/input.txt")
+	fileScanner := common.FileScanner(path)
 	cards := loadCardsWithJokers(fileScanner)
 
 	sort.Slice(cards, func(i, j int) bool {

@@ -106,8 +106,8 @@ func compareSameFigures(cardWeights []string, firstCard card, secondCard card) b
 	return false
 }
 
-func Part1() (answer int) {
-	fileScanner := common.FileScanner("day_07/input.txt")
+func Part1(path string) (answer int) {
+	fileScanner := common.FileScanner(path)
 	cards := loadCards(fileScanner)
 
 	sort.Slice(cards, func(i, j int) bool {

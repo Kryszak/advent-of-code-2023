@@ -16,10 +16,10 @@ func calculateWonCards(winningNumbers []string, cardNumbers []string) (cardScore
 	return cardScore
 }
 
-func Part2() int {
+func Part2(path string) int {
 	answer := 0
 
-	fileScanner := common.FileScanner("day_04/input.txt")
+	fileScanner := common.FileScanner(path)
 	var scratchCards []string
 
 	for fileScanner.Scan() {

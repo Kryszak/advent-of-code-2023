@@ -26,8 +26,8 @@ type pointCandidate struct {
 	direction rune
 }
 
-func loadInput() (lines []string) {
-	fileScanner := common.FileScanner("day_10/input.txt")
+func loadInput(path string) (lines []string) {
+	fileScanner := common.FileScanner(path)
 
 	for fileScanner.Scan() {
 		lines = append(lines, fileScanner.Text())
@@ -171,8 +171,8 @@ func findLoop(maze []string) (loopPoints []point) {
 	return loopPoints
 }
 
-func Part1() int {
-	maze := loadInput()
+func Part1(path string) int {
+	maze := loadInput(path)
 	loop := findLoop(maze)
 
 	answer := len(loop) / 2

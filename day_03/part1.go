@@ -11,8 +11,8 @@ import (
 
 var numbersRegexp = regexp.MustCompile(`[0-9]+`)
 
-func loadEngineSchematic() (engineSchematic []string) {
-	fileScanner := common.FileScanner("day_03/input.txt")
+func loadEngineSchematic(path string) (engineSchematic []string) {
+	fileScanner := common.FileScanner(path)
 
 	for i := 0; fileScanner.Scan(); i++ {
 		line := fileScanner.Text()
@@ -22,10 +22,10 @@ func loadEngineSchematic() (engineSchematic []string) {
 	return engineSchematic
 }
 
-func Part1() int {
+func Part1(path string) int {
 	answer := 0
 
-	engineSchematic := loadEngineSchematic()
+	engineSchematic := loadEngineSchematic(path)
 	lineLenght := len(engineSchematic[0])
 
 	for lineIndex, line := range engineSchematic {

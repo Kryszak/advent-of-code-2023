@@ -1,9 +1,9 @@
 package day11
 
-func Part2() int {
+func Part2(path string) int {
 	answer := 0
 
-	universe, galaxies := loadUniverse()
+	universe, galaxies := loadUniverse(path)
 	expandedRows, expandedColumns := getExpandedColumnsAndRows(&universe)
 
 	for i := 0; i < len(galaxies); i++ {

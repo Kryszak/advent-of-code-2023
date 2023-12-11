@@ -12,10 +12,10 @@ func setMax(current *int, compared int) {
 	}
 }
 
-func Part2() int {
+func Part2(path string) int {
 	answer := 0
 
-	fileScanner := common.FileScanner("day_02/input.txt")
+	fileScanner := common.FileScanner(path)
 
 	for fileScanner.Scan() {
 		_, roundValues := parseIdAndRoundValues(fileScanner.Text())

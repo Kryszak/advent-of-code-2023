@@ -39,10 +39,10 @@ func extractNumberNearStarInSameLine(line string, numberRanges [][]int, starInde
 	return numbers
 }
 
-func Part2() int {
+func Part2(path string) int {
 	answer := 0
 
-	engineSchematic := loadEngineSchematic()
+	engineSchematic := loadEngineSchematic(path)
 
 	var gearRatioParts [][]int
 

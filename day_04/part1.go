@@ -32,10 +32,10 @@ func calculateCardValue(winningNumbers []string, cardNumbers []string) (cardScor
 	return cardScore
 }
 
-func Part1() int {
+func Part1(path string) int {
 	answer := 0
 
-	fileScanner := common.FileScanner("day_04/input.txt")
+	fileScanner := common.FileScanner(path)
 
 	for fileScanner.Scan() {
 		line := fileScanner.Text()

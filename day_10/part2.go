@@ -69,8 +69,8 @@ func findTilesInsideCount(visualization [][]string) (tilesInsideCount int) {
 	return tilesInsideCount
 }
 
-func Part2() int {
-	maze := loadInput()
+func Part2(path string) int {
+	maze := loadInput(path)
 	loopPoints := findLoop(maze)
 
 	visualization := prepareMazeVisualization(maze, loopPoints)

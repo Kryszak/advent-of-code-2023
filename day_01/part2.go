@@ -19,9 +19,9 @@ var wordToDigitMap = map[string]string{
 	"nine":  "9",
 }
 
-func Part2() int {
+func Part2(path string) int {
 	answer := 0
-	fileScanner := common.FileScanner("day_01/input.txt")
+	fileScanner := common.FileScanner(path)
 
 	for fileScanner.Scan() {
 		line := fileScanner.Text()

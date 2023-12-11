@@ -47,10 +47,10 @@ func getOrDefault(sourceToDestinationMappings []sourceToDestination, index int) 
 	return index
 }
 
-func Part1() int {
+func Part1(path string) int {
 	answer := 0
 
-	fileScanner := common.FileScanner("day_05/input.txt")
+	fileScanner := common.FileScanner(path)
 
 	var seeds []int
 	seedToSoil := make([]sourceToDestination, 0)

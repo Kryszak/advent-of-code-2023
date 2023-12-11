@@ -20,50 +20,50 @@ import (
 
 func main() {
 	fmt.Println("*** Day 01 ***")
-	common.TimeMethodCall(day1.Part1)
-	common.TimeMethodCall(day1.Part2)
+	common.TimeMethodCall("day_01/input1.txt", day1.Part1)
+	common.TimeMethodCall("day_01/input2.txt", day1.Part2)
 
 	fmt.Println("*** Day 02 ***")
-	common.TimeMethodCall(day2.Part1)
-	common.TimeMethodCall(day2.Part2)
+	common.TimeMethodCall("day_02/input.txt", day2.Part1)
+	common.TimeMethodCall("day_02/input.txt", day2.Part2)
 
 	fmt.Println("*** Day 03 ***")
-	common.TimeMethodCall(day3.Part1)
-	common.TimeMethodCall(day3.Part2)
+	common.TimeMethodCall("day_03/input.txt", day3.Part1)
+	common.TimeMethodCall("day_03/input.txt", day3.Part2)
 
 	fmt.Println("*** Day 04 ***")
-	common.TimeMethodCall(day4.Part1)
-	common.TimeMethodCall(day4.Part2)
+	common.TimeMethodCall("day_04/input.txt", day4.Part1)
+	common.TimeMethodCall("day_04/input.txt", day4.Part2)
 
 	fmt.Println("*** Day 05 ***")
-	common.TimeMethodCall(day5.Part1)
-	common.TimeMethodCall(day5.Part2)
+	common.TimeMethodCall("day_05/input.txt", day5.Part1)
+	common.TimeMethodCall("day_05/input.txt", day5.Part2)
 
 	fmt.Println("*** Day 06 ***")
-	common.TimeMethodCall(day6.Part1)
-	common.TimeMethodCall(day6.Part2)
+	common.TimeMethodCall("day_06/input.txt", day6.Part1)
+	common.TimeMethodCall("day_06/input.txt", day6.Part2)
 
 	fmt.Println("*** Day 07 ***")
-	common.TimeMethodCall(day7.Part1)
-	common.TimeMethodCall(day7.Part2)
+	common.TimeMethodCall("day_07/input.txt", day7.Part1)
+	common.TimeMethodCall("day_07/input.txt", day7.Part2)
 
 	fmt.Println("*** Day 08 ***")
-	common.TimeMethodCall(day8.Part1)
-	common.TimeMethodCall(day8.Part2)
+	common.TimeMethodCall("day_08/input.txt", day8.Part1)
+	common.TimeMethodCall("day_08/input.txt", day8.Part2)
 
 	fmt.Println("*** Day 09 ***")
-	common.TimeMethodCall(day9.Part1)
-	common.TimeMethodCall(day9.Part2)
+	common.TimeMethodCall("day_09/input.txt", day9.Part1)
+	common.TimeMethodCall("day_09/input.txt", day9.Part2)
 
 	fmt.Println("*** Day 10 ***")
-	common.TimeMethodCall(day10.Part1)
-	common.TimeMethodCall(day10.Part2)
+	common.TimeMethodCall("day_10/input.txt", day10.Part1)
+	common.TimeMethodCall("day_10/input.txt", day10.Part2)
 
 	fmt.Println("*** Day 11 ***")
-	common.TimeMethodCall(day11.Part1)
-	common.TimeMethodCall(day11.Part2)
+	common.TimeMethodCall("day_11/input.txt", day11.Part1)
+	common.TimeMethodCall("day_11/input.txt", day11.Part2)
 
 	fmt.Println("*** Day 12 ***")
-	common.TimeMethodCall(day12.Part1)
-	common.TimeMethodCall(day12.Part2)
+	common.TimeMethodCall("day_12/input.txt", day12.Part1)
+	common.TimeMethodCall("day_12/input.txt", day12.Part2)
 }

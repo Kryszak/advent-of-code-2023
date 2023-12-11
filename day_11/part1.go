@@ -10,8 +10,8 @@ type location struct {
 	x, y int
 }
 
-func loadUniverse() (universe [][]rune, galaxies []location) {
-	fileScanner := common.FileScanner("day_11/input.txt")
+func loadUniverse(path string) (universe [][]rune, galaxies []location) {
+	fileScanner := common.FileScanner(path)
 
 	for x := 0; fileScanner.Scan(); x++ {
 		line := make([]rune, 0)
@@ -79,10 +79,10 @@ func calculateGalaxiesDistance(first, second location, expandedRows, expandedCol
 	return xDistance + yDistance
 }
 
-func Part1() int {
+func Part1(path string) int {
 	answer := 0
 
-	universe, galaxies := loadUniverse()
+	universe, galaxies := loadUniverse(path)
 	expandedRows, expandedColumns := getExpandedColumnsAndRows(&universe)
 
 	for i := 0; i < len(galaxies); i++ {

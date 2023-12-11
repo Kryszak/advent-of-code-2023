@@ -15,10 +15,10 @@ func parseSingleValueLine(fileScanner *bufio.Scanner) int {
 	return parsed
 }
 
-func Part2() int {
+func Part2(path string) int {
 	answer := 1
 
-	fileScanner := common.FileScanner("day_06/input.txt")
+	fileScanner := common.FileScanner(path)
 
 	raceTime := parseSingleValueLine(fileScanner)
 	raceDistance := parseSingleValueLine(fileScanner)

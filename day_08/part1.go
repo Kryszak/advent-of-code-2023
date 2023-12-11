@@ -40,10 +40,10 @@ func getNextNode(nodeMap map[string]node, currentNode string, direction string) 
 	}
 }
 
-func Part1() int {
+func Part1(path string) int {
 	answer := 0
 
-	fileScanner := common.FileScanner("day_08/input.txt")
+	fileScanner := common.FileScanner(path)
 
 	fileScanner.Scan()
 	stepSequence := fileScanner.Text()

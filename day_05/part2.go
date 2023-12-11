@@ -42,10 +42,10 @@ func seedExists(seeds []int, seed int) bool {
 	return false
 }
 
-func Part2() int {
+func Part2(path string) int {
 	answer := 0
 
-	fileScanner := common.FileScanner("day_05/input.txt")
+	fileScanner := common.FileScanner(path)
 
 	var seeds []int
 	soilToSeed := make([]sourceToDestination, 0)

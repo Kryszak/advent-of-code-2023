@@ -24,10 +24,10 @@ func calculateDistance(timeHold int, raceTime int) int {
 	return timeHold * (raceTime - timeHold)
 }
 
-func Part1() int {
+func Part1(path string) int {
 	answer := 1
 
-	fileScanner := common.FileScanner("day_06/input.txt")
+	fileScanner := common.FileScanner(path)
 
 	raceTimes := parseLine(fileScanner)
 	raceDistances := parseLine(fileScanner)
