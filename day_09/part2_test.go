@@ -1,12 +1,13 @@
-package day06
+package day09
 
 import "testing"
 
 func TestPart2(t *testing.T) {
 	got := Part2("input.txt")
-	want := 71503
+	want := 2
 
 	if got != want {
 		t.Errorf("got %v wanted %v", got, want)
 	}
 }
+

@@ -48,16 +48,16 @@ func main() {
 	common.TimeMethodCall("day_07/input.txt", day7.Part2)
 
 	fmt.Println("*** Day 08 ***")
-	common.TimeMethodCall("day_08/input.txt", day8.Part1)
-	common.TimeMethodCall("day_08/input.txt", day8.Part2)
+	common.TimeMethodCall("day_08/input1.txt", day8.Part1)
+	common.TimeMethodCall("day_08/input2.txt", day8.Part2)
 
 	fmt.Println("*** Day 09 ***")
 	common.TimeMethodCall("day_09/input.txt", day9.Part1)
 	common.TimeMethodCall("day_09/input.txt", day9.Part2)
 
 	fmt.Println("*** Day 10 ***")
-	common.TimeMethodCall("day_10/input.txt", day10.Part1)
-	common.TimeMethodCall("day_10/input.txt", day10.Part2)
+	common.TimeMethodCall("day_10/input1.txt", day10.Part1)
+	common.TimeMethodCall("day_10/input2.txt", day10.Part2)
 
 	fmt.Println("*** Day 11 ***")
 	common.TimeMethodCall("day_11/input.txt", day11.Part1)

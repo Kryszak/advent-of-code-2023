@@ -7,6 +7,6 @@ func TestPart2(t *testing.T) {
 	want := 30
 
 	if got != want {
-		t.Errorf("got %q wanted %q", got, want)
+		t.Errorf("got %v wanted %v", got, want)
 	}
 }

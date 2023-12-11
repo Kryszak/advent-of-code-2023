@@ -16,7 +16,7 @@ func parseSingleValueLine(fileScanner *bufio.Scanner) int {
 }
 
 func Part2(path string) int {
-	answer := 1
+	answer := 0
 
 	fileScanner := common.FileScanner(path)
 
