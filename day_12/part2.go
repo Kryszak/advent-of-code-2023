@@ -53,6 +53,7 @@ func calculatePossibleArrangements(record spring) int {
 
 	return dp(0, 0, record.sequence, record.brokenGroups, cache)
 }
+
 func Part2(path string) int {
 	answer := 0
 	records := loadEntries(path, 5)
