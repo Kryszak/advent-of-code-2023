@@ -1,6 +1,8 @@
 package day12
 
 import (
+	"reflect"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -41,58 +43,47 @@ func loadEntries(path string, unfoldCount int) []spring {
 	return records
 }
 
-func dp(i, j int, record string, group []int, cache [][]int) int {
-	if i >= len(record) {
-		if j < len(group) {
-			return 0
-		}
-		return 1
+func generateCombinations(length int, current string, combinations []string) []string {
+	if length == 0 {
+		combinations = append(combinations, current)
+		return combinations
 	}
 
-	if cache[i][j] != -1 {
-		return cache[i][j]
-	}
+	combinations = generateCombinations(length-1, current+"0", combinations)
+	combinations = generateCombinations(length-1, current+"1", combinations)
 
-	result := 0
-	if record[i] == operational {
-		result = dp(i+1, j, record, group, cache)
-	} else {
-		if record[i] == unknown {
-			result += dp(i+1, j, record, group, cache)
-		}
-		if j < len(group) {
-			count := 0
-			for k := i; k < len(record); k++ {
-				if count > group[j] || record[k] == operational || count == group[j] && record[k] == unknown {
-					break
-				}
-				count += 1
-			}
-
-			if count == group[j] {
-				if i+count < len(record) && record[i+count] != damaged {
-					result += dp(i+count+1, j+1, record, group, cache)
-				} else {
-					result += dp(i+count, j+1, record, group, cache)
-				}
-			}
-		}
-	}
-
-	cache[i][j] = result
-	return result
+	return combinations
 }
 
-func calculatePossibleArrangements(record spring) int {
-	var cache [][]int
-	for i := 0; i < len(record.sequence); i++ {
-		cache = append(cache, make([]int, len(record.brokenGroups)+1))
-		for j := 0; j < len(record.brokenGroups)+1; j++ {
-			cache[i][j] = -1
+func generatePossibleSequences(entry spring) []string {
+	unknownCount := strings.Count(entry.sequence, "?")
+	combinations := []string{}
+	possiblePermutations := generateCombinations(unknownCount, "", combinations)
+	possibleSequences := make([]string, 0)
+	for _, possiblePermutation := range possiblePermutations {
+		sequence := entry.sequence
+		for _, value := range possiblePermutation {
+			var replaced string
+			if value == '0' {
+				replaced = string(operational)
+			} else {
+				replaced = string(damaged)
+			}
+			sequence = strings.Replace(sequence, string(unknown), replaced, 1)
 		}
+		possibleSequences = append(possibleSequences, sequence)
 	}
+	return possibleSequences
+}
 
-	return dp(0, 0, record.sequence, record.brokenGroups, cache)
+func isValidSequence(sequence string, locations []int) bool {
+	regex := regexp.MustCompile("[#]+")
+	indexes := regex.FindAllStringSubmatchIndex(sequence, -1)
+	var matches []int
+	for _, indexRange := range indexes {
+		matches = append(matches, indexRange[1]-indexRange[0])
+	}
+	return reflect.DeepEqual(locations, matches)
 }
 
 func Part1(path string) int {
@@ -101,7 +92,12 @@ func Part1(path string) int {
 	records := loadEntries(path, 1)
 
 	for _, spring := range records {
-		answer += calculatePossibleArrangements(spring)
+		possibleSequences := generatePossibleSequences(spring)
+		for _, sequence := range possibleSequences {
+			if isValidSequence(sequence, spring.brokenGroups) {
+				answer++
+			}
+		}
 	}
 
 	return answer
