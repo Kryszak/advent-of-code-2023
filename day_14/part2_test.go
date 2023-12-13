@@ -2,7 +2,7 @@ package day14
 
 import "testing"
 
-func TestPart1(t *testing.T) {
+func TestPart2(t *testing.T) {
 	got := Part2("input.txt")
 	want := 0
 
