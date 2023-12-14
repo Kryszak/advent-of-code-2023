@@ -1,8 +1,6 @@
 package day13
 
 import (
-	"math"
-
 	"github.com/Kryszak/aoc2023/common"
 )
 
@@ -28,7 +26,7 @@ func loadPatterns(path string) (patterns [][]string) {
 func findReflectionIndexes(pattern []string) []int {
 	var indexes []int
 	for i := 1; i < len(pattern); i++ {
-		limit := int(math.Min(float64(i), float64(len(pattern)-i)))
+		limit := common.Min(i, len(pattern)-i)
 		found := true
 		for j := 0; j < limit && found; j++ {
 			found = pattern[i-1-j] == pattern[i+j]

@@ -1,7 +1,6 @@
 package day03
 
 import (
-	"math"
 	"regexp"
 	"strconv"
 	"strings"
@@ -33,8 +32,8 @@ func Part1(path string) int {
 		for _, numberIndexRange := range matches {
 			var surroundingCharacters string
 			numberValue, _ := strconv.Atoi(line[numberIndexRange[0]:numberIndexRange[1]])
-			leftBound := int(math.Max(float64(numberIndexRange[0]-1), 0))
-			rightBound := int(math.Min(float64(numberIndexRange[1]+1), float64(lineLenght)))
+			leftBound := common.Max(numberIndexRange[0]-1, 0)
+			rightBound := common.Min(numberIndexRange[1]+1, lineLenght)
 			if lineIndex > 0 {
 				surroundingCharacters = engineSchematic[lineIndex-1][leftBound:rightBound]
 			}

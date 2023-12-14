@@ -1,9 +1,10 @@
 package day03
 
 import (
-	"math"
 	"regexp"
 	"strconv"
+
+	"github.com/Kryszak/aoc2023/common"
 )
 
 func getStarIndexesInLine(line string) (starIndexes []int) {
@@ -18,8 +19,8 @@ func getStarIndexesInLine(line string) (starIndexes []int) {
 func extractNumberNearStarInAnotherLine(line string, numberRanges [][]int, starIndex int) []int {
 	var numbers []int
 	for _, numberRange := range numberRanges {
-		leftBound := int(math.Max(0, float64(numberRange[0]-1)))
-		rightBound := int(math.Min(float64(numberRange[1]), float64(len(line)-1)))
+		leftBound := common.Max(0, numberRange[0]-1)
+		rightBound := common.Min(numberRange[1], len(line)-1)
 		if leftBound <= starIndex && rightBound >= starIndex {
 			numberValue, _ := strconv.Atoi(line[numberRange[0]:numberRange[1]])
 			numbers = append(numbers, numberValue)

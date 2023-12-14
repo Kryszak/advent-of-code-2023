@@ -56,8 +56,8 @@ func getExpandedColumnsAndRows(universe *[][]rune) (emptyRows, emptyColumns []in
 }
 
 func getEmptyBetween(first, second int, emptyIndexes []int) (count int) {
-	minVal := int(math.Min(float64(first), float64(second)))
-	maxVal := int(math.Max(float64(first), float64(second)))
+	minVal := common.Min(first, second)
+	maxVal := common.Max(first, second)
 	for _, value := range emptyIndexes {
 		if value > minVal && value < maxVal {
 			count++
