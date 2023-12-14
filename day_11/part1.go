@@ -1,8 +1,6 @@
 package day11
 
 import (
-	"math"
-
 	"github.com/Kryszak/aoc2023/common"
 )
 
@@ -68,13 +66,8 @@ func getEmptyBetween(first, second int, emptyIndexes []int) (count int) {
 
 func calculateGalaxiesDistance(first, second location, expandedRows, expandedColumns []int, expansionFactor int) int {
 	expandTimes := expansionFactor - 1
-	xDistance := int(
-		math.Abs(float64(first.x-second.x)) +
-			float64(expandTimes)*float64(getEmptyBetween(first.x, second.x, expandedRows)))
-
-	yDistance := int(
-		math.Abs(float64(first.y-second.y)) +
-			float64(expandTimes)*float64(getEmptyBetween(first.y, second.y, expandedColumns)))
+	xDistance := common.Abs(first.x-second.x) + expandTimes*getEmptyBetween(first.x, second.x, expandedRows)
+	yDistance := common.Abs(first.y-second.y) + expandTimes*getEmptyBetween(first.y, second.y, expandedColumns)
 
 	return xDistance + yDistance
 }

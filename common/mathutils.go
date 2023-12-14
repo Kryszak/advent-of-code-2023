@@ -9,3 +9,7 @@ func Min(first int, second int) int {
 func Max(first int, second int) int {
 	return int(math.Max(float64(first), float64(second)))
 }
+
+func Abs(value int) int {
+	return int(math.Abs(float64(value)))
+}
