@@ -12,18 +12,17 @@ type step struct {
 	focalLength int
 }
 
-type label struct {
+type lens struct {
 	label string
 	power int
 }
 
-func (a label) equal(b string) bool {
-	return a.label == b
+func (a lens) hasLabel(label string) bool {
+	return a.label == label
 }
 
 func parseDigit(character rune) int {
-	value := common.Atoi(string(character))
-	return value
+	return common.Atoi(string(character))
 }
 
 func parseSteps(input [][]rune) []step {
@@ -52,25 +51,25 @@ func parseSteps(input [][]rune) []step {
 	return steps
 }
 
-func installLenses(steps []step) map[int][]label {
-	boxes := make(map[int][]label, 256)
+func installLenses(steps []step) map[int][]lens {
+	boxes := make(map[int][]lens, 256)
 
 	for _, step := range steps {
 		boxNumber := calculateStepHash(step.label)
-		lenLabel := string(step.label)
+		lensLabel := string(step.label)
 
 		if step.operation == '=' {
-			lensIndex := slices.IndexFunc(boxes[boxNumber], func(l label) bool {
-				return l.equal(lenLabel)
+			lensIndex := slices.IndexFunc(boxes[boxNumber], func(l lens) bool {
+				return l.hasLabel(lensLabel)
 			})
 			if lensIndex != -1 {
 				boxes[boxNumber][lensIndex].power = step.focalLength
 			} else {
-				boxes[boxNumber] = append(boxes[boxNumber], label{lenLabel, step.focalLength})
+				boxes[boxNumber] = append(boxes[boxNumber], lens{lensLabel, step.focalLength})
 			}
 		} else {
-			boxes[boxNumber] = slices.DeleteFunc(boxes[boxNumber], func(l label) bool {
-				return l.equal(lenLabel)
+			boxes[boxNumber] = slices.DeleteFunc(boxes[boxNumber], func(l lens) bool {
+				return l.hasLabel(lensLabel)
 			})
 		}
 	}
@@ -84,7 +83,7 @@ func installLenses(steps []step) map[int][]label {
 	return boxes
 }
 
-func calculateBoxFocusingPower(boxIndex int, lenses []label) int {
+func calculateBoxFocusingPower(boxIndex int, lenses []lens) int {
 	result := 0
 
 	for lensIndex, lens := range lenses {
@@ -99,7 +98,6 @@ func Part2(path string) int {
 
 	input := loadInput(path)
 	steps := parseSteps(input)
-
 	boxes := installLenses(steps)
 
 	for i, box := range boxes {
