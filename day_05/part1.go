@@ -2,7 +2,6 @@ package day05
 
 import (
 	"bufio"
-	"strconv"
 	"strings"
 
 	"github.com/Kryszak/aoc2023/common"
@@ -16,9 +15,9 @@ type sourceToDestination struct {
 
 func parseLine(valueMap *[]sourceToDestination, line string) {
 	values := strings.Fields(line)
-	source, _ := strconv.Atoi(values[1])
-	destination, _ := strconv.Atoi(values[0])
-	rng, _ := strconv.Atoi(values[2])
+	source := common.Atoi(values[1])
+	destination := common.Atoi(values[0])
+	rng := common.Atoi(values[2])
 	entry := new(sourceToDestination)
 	entry.source = source
 	entry.destination = destination
@@ -66,7 +65,7 @@ func Part1(path string) int {
 
 		if strings.HasPrefix(line, "seeds:") {
 			for _, seed := range strings.Fields(strings.TrimSpace(strings.Split(line, ":")[1])) {
-				seedValue, _ := strconv.Atoi(seed)
+				seedValue := common.Atoi(seed)
 				seeds = append(seeds, seedValue)
 			}
 		}

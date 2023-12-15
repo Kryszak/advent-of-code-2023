@@ -2,7 +2,6 @@ package day03
 
 import (
 	"regexp"
-	"strconv"
 
 	"github.com/Kryszak/aoc2023/common"
 )
@@ -22,7 +21,7 @@ func extractNumberNearStarInAnotherLine(line string, numberRanges [][]int, starI
 		leftBound := common.Max(0, numberRange[0]-1)
 		rightBound := common.Min(numberRange[1], len(line)-1)
 		if leftBound <= starIndex && rightBound >= starIndex {
-			numberValue, _ := strconv.Atoi(line[numberRange[0]:numberRange[1]])
+			numberValue := common.Atoi(line[numberRange[0]:numberRange[1]])
 			numbers = append(numbers, numberValue)
 		}
 	}
@@ -33,7 +32,7 @@ func extractNumberNearStarInSameLine(line string, numberRanges [][]int, starInde
 	var numbers []int
 	for _, numberRange := range numberRanges {
 		if numberRange[0] == starIndex+1 || numberRange[1] == starIndex {
-			numberValue, _ := strconv.Atoi(line[numberRange[0]:numberRange[1]])
+			numberValue := common.Atoi(line[numberRange[0]:numberRange[1]])
 			numbers = append(numbers, numberValue)
 		}
 	}

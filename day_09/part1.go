@@ -2,7 +2,6 @@ package day09
 
 import (
 	"bufio"
-	"strconv"
 	"strings"
 
 	"github.com/Kryszak/aoc2023/common"
@@ -15,7 +14,7 @@ func loadReadings(fileScanner *bufio.Scanner) [][]int {
 		line := strings.Fields(fileScanner.Text())
 		var readingLine []int
 		for _, value := range line {
-			converted, _ := strconv.Atoi(value)
+			converted := common.Atoi(value)
 			readingLine = append(readingLine, converted)
 		}
 		readings = append(readings, readingLine)

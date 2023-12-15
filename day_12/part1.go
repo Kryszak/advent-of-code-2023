@@ -3,7 +3,6 @@ package day12
 import (
 	"reflect"
 	"regexp"
-	"strconv"
 	"strings"
 
 	"github.com/Kryszak/aoc2023/common"
@@ -30,7 +29,7 @@ func loadEntries(path string, unfoldCount int) []spring {
 		sequence := line[0]
 		var groups []int
 		for _, group := range strings.Split(line[1], ",") {
-			value, _ := strconv.Atoi(group)
+			value := common.Atoi(group)
 			groups = append(groups, value)
 		}
 		initialGroups := groups

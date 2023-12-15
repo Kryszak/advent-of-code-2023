@@ -19,7 +19,7 @@ func Part1(path string) int {
 				digits = append(digits, character)
 			}
 		}
-		lineValue, _ := strconv.Atoi(digits[0] + digits[len(digits)-1])
+		lineValue := common.Atoi(digits[0] + digits[len(digits)-1])
 		answer += lineValue
 	}
 

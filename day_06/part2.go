@@ -2,7 +2,6 @@ package day06
 
 import (
 	"bufio"
-	"strconv"
 	"strings"
 
 	"github.com/Kryszak/aoc2023/common"
@@ -10,7 +9,7 @@ import (
 
 func parseSingleValueLine(fileScanner *bufio.Scanner) int {
 	fileScanner.Scan()
-	parsed, _ := strconv.Atoi(strings.Join(strings.Fields(strings.Split(fileScanner.Text(), ":")[1]), ""))
+	parsed := common.Atoi(strings.Join(strings.Fields(strings.Split(fileScanner.Text(), ":")[1]), ""))
 
 	return parsed
 }

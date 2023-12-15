@@ -3,7 +3,6 @@ package day07
 import (
 	"bufio"
 	"sort"
-	"strconv"
 	"strings"
 
 	"github.com/Kryszak/aoc2023/common"
@@ -76,7 +75,7 @@ func loadCards(fileScanner *bufio.Scanner) []card {
 	for fileScanner.Scan() {
 		line := strings.Fields(fileScanner.Text())
 		hand := line[0]
-		cardBid, _ := strconv.Atoi(line[1])
+		cardBid := common.Atoi(line[1])
 		handType := evaluateCardHandType(hand)
 		card := card{hand, cardBid, handType}
 		cards = append(cards, card)

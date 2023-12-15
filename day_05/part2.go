@@ -3,7 +3,6 @@ package day05
 import (
 	"bufio"
 	"math"
-	"strconv"
 	"strings"
 
 	"github.com/Kryszak/aoc2023/common"
@@ -11,9 +10,9 @@ import (
 
 func parseLineReversed(valueMap *[]sourceToDestination, line string) {
 	values := strings.Fields(line)
-	source, _ := strconv.Atoi(values[0])
-	destination, _ := strconv.Atoi(values[1])
-	rng, _ := strconv.Atoi(values[2])
+	source := common.Atoi(values[0])
+	destination := common.Atoi(values[1])
+	rng := common.Atoi(values[2])
 	entry := new(sourceToDestination)
 	entry.source = source
 	entry.destination = destination
@@ -62,7 +61,7 @@ func Part2(path string) int {
 		if strings.HasPrefix(line, "seeds:") {
 			seedRanges := strings.Fields(strings.TrimSpace(strings.Split(line, ":")[1]))
 			for _, seed := range seedRanges {
-				value, _ := strconv.Atoi(seed)
+				value := common.Atoi(seed)
 				seeds = append(seeds, value)
 			}
 		}

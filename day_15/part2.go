@@ -2,7 +2,8 @@ package day15
 
 import (
 	"slices"
-	"strconv"
+
+	"github.com/Kryszak/aoc2023/common"
 )
 
 type step struct {
@@ -21,7 +22,7 @@ func (a label) equal(b string) bool {
 }
 
 func parseDigit(character rune) int {
-	value, _ := strconv.Atoi(string(character))
+	value := common.Atoi(string(character))
 	return value
 }
 

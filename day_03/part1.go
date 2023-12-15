@@ -2,7 +2,6 @@ package day03
 
 import (
 	"regexp"
-	"strconv"
 	"strings"
 
 	"github.com/Kryszak/aoc2023/common"
@@ -31,7 +30,7 @@ func Part1(path string) int {
 		matches := numbersRegexp.FindAllStringSubmatchIndex(line, -1)
 		for _, numberIndexRange := range matches {
 			var surroundingCharacters string
-			numberValue, _ := strconv.Atoi(line[numberIndexRange[0]:numberIndexRange[1]])
+			numberValue := common.Atoi(line[numberIndexRange[0]:numberIndexRange[1]])
 			leftBound := common.Max(numberIndexRange[0]-1, 0)
 			rightBound := common.Min(numberIndexRange[1]+1, lineLenght)
 			if lineIndex > 0 {

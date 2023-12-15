@@ -37,7 +37,7 @@ func Part2(path string) int {
 				}
 			}
 		}
-		lineValue, _ := strconv.Atoi(digits[0] + digits[len(digits)-1])
+		lineValue := common.Atoi(digits[0] + digits[len(digits)-1])
 		answer += lineValue
 	}
 
