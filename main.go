@@ -89,6 +89,6 @@ func main() {
 	common.TimeMethodCall("day_16/input.txt", day16.Part2)
 
 	fmt.Println("*** Day 17 ***")
-	common.TimeMethodCall( "day_17/input.txt", day17.Part1)
-	common.TimeMethodCall( "day_17/input.txt", day17.Part2)
+	common.TimeMethodCall("day_17/input.txt", day17.Part1)
+	common.TimeMethodCall("day_17/input.txt", day17.Part2)
 }
