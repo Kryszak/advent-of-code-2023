@@ -64,9 +64,7 @@ func predictNextValue(readingLine []int) int {
 	return diffLines[0][len(diffLines[0])-1]
 }
 
-func Part1(path string) int {
-	answer := 0
-
+func Part1(path string) (answer int) {
 	fileScanner := common.FileScanner(path)
 	readings := loadReadings(fileScanner)
 

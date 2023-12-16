@@ -72,9 +72,7 @@ func calculateGalaxiesDistance(first, second location, expandedRows, expandedCol
 	return xDistance + yDistance
 }
 
-func Part1(path string) int {
-	answer := 0
-
+func Part1(path string) (answer int) {
 	universe, galaxies := loadUniverse(path)
 	expandedRows, expandedColumns := getExpandedColumnsAndRows(&universe)
 

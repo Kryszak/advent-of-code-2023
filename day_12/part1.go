@@ -85,9 +85,7 @@ func isValidSequence(sequence string, locations []int) bool {
 	return reflect.DeepEqual(locations, matches)
 }
 
-func Part1(path string) int {
-	answer := 0
-
+func Part1(path string) (answer int) {
 	records := loadEntries(path, 1)
 
 	for _, spring := range records {

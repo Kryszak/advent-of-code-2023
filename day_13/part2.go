@@ -64,9 +64,7 @@ func evaluateReflectionsWithSmudges(pattern []string) int {
 	return result
 }
 
-func Part2(path string) int {
-	answer := 0
-
+func Part2(path string) (answer int) {
 	patterns := loadPatterns(path)
 
 	for _, pattern := range patterns {

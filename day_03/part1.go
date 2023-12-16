@@ -20,9 +20,7 @@ func loadEngineSchematic(path string) (engineSchematic []string) {
 	return engineSchematic
 }
 
-func Part1(path string) int {
-	answer := 0
-
+func Part1(path string) (answer int) {
 	engineSchematic := loadEngineSchematic(path)
 	lineLenght := len(engineSchematic[0])
 

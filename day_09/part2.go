@@ -16,9 +16,7 @@ func predictPreviousValue(readingLine []int) int {
 	return diffLines[0][0]
 }
 
-func Part2(path string) int {
-	answer := 0
-
+func Part2(path string) (answer int) {
 	fileScanner := common.FileScanner(path)
 	readings := loadReadings(fileScanner)
 

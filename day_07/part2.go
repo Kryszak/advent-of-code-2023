@@ -85,9 +85,7 @@ func loadCardsWithJokers(fileScanner *bufio.Scanner) []card {
 	return cards
 }
 
-func Part2(path string) int {
-	answer := 0
-
+func Part2(path string) (answer int) {
 	fileScanner := common.FileScanner(path)
 	cards := loadCardsWithJokers(fileScanner)
 

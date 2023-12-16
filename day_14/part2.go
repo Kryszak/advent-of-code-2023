@@ -66,9 +66,7 @@ func hashDish(dish [][]rune) string {
 	return hex.EncodeToString(hasher.Sum(nil))
 }
 
-func Part2(path string) int {
-	answer := 0
-
+func Part2(path string) (answer int) {
 	hashedTilts := make(map[string]int)
 	tiltedCombinations := make([][][]rune, 0)
 

@@ -56,8 +56,8 @@ func lowestCommonMultiple(first int, second int) int {
 	return first * second / greatestCommonDivisor(first, second)
 }
 
-func Part2(path string) int {
-	answer := 1
+func Part2(path string) (answer int) {
+	answer = 1
 
 	fileScanner := common.FileScanner(path)
 

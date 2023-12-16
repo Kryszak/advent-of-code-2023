@@ -93,9 +93,7 @@ func calculateBoxFocusingPower(boxIndex int, lenses []lens) int {
 	return result
 }
 
-func Part2(path string) int {
-	answer := 0
-
+func Part2(path string) (answer int) {
 	input := loadInput(path)
 	steps := parseSteps(input)
 	boxes := installLenses(steps)

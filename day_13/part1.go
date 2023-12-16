@@ -69,9 +69,7 @@ func evaluateReflections(pattern []string) int {
 	return result
 }
 
-func Part1(path string) int {
-	answer := 0
-
+func Part1(path string) (answer int) {
 	patterns := loadPatterns(path)
 
 	for _, pattern := range patterns {

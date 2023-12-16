@@ -1,7 +1,6 @@
 package day17
 
-func Part1(path string) int {
-	answer := 0
+func Part1(path string) (answer int) {
 
 	return answer
 }

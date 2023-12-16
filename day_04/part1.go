@@ -32,9 +32,7 @@ func calculateCardValue(winningNumbers []string, cardNumbers []string) (cardScor
 	return cardScore
 }
 
-func Part1(path string) int {
-	answer := 0
-
+func Part1(path string) (answer int) {
 	fileScanner := common.FileScanner(path)
 
 	for fileScanner.Scan() {

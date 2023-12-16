@@ -122,5 +122,5 @@ func Part1(path string) (answer int) {
 		answer += card.bid * (index + 1)
 	}
 
-	return
+	return answer
 }

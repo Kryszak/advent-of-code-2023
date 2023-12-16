@@ -30,9 +30,7 @@ func calculateStepHash(step []rune) int {
 	return result
 }
 
-func Part1(path string) int {
-	answer := 0
-
+func Part1(path string) (answer int) {
 	input := loadInput(path)
 
 	for _, input := range input {

@@ -13,9 +13,7 @@ func copyCavern(cavern [][]tile) [][]tile {
 	return copied
 }
 
-func Part2(path string) int {
-	answer := 0
-
+func Part2(path string) (answer int) {
 	var energizedTilesCount []int
 	cavern := loadInput(path)
 

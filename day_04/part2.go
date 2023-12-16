@@ -16,9 +16,7 @@ func calculateWonCards(winningNumbers []string, cardNumbers []string) (cardScore
 	return cardScore
 }
 
-func Part2(path string) int {
-	answer := 0
-
+func Part2(path string) (answer int) {
 	fileScanner := common.FileScanner(path)
 	var scratchCards []string
 

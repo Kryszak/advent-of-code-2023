@@ -6,8 +6,7 @@ import (
 	"github.com/Kryszak/aoc2023/common"
 )
 
-func Part1(path string) int {
-	answer := 0
+func Part1(path string) (answer int) {
 	fileScanner := common.FileScanner(path)
 
 	for fileScanner.Scan() {

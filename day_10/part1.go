@@ -171,11 +171,11 @@ func findLoop(maze []string) (loopPoints []point) {
 	return loopPoints
 }
 
-func Part1(path string) int {
+func Part1(path string) (answer int) {
 	maze := loadInput(path)
 	loop := findLoop(maze)
 
-	answer := len(loop) / 2
+	answer = len(loop) / 2
 
 	return answer
 }

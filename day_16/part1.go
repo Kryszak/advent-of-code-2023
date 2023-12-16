@@ -145,9 +145,7 @@ func sumEnergizedTiles(cavern [][]tile) (result int) {
 	return
 }
 
-func Part1(path string) int {
-	answer := 0
-
+func Part1(path string) (answer int) {
 	cavern := loadInput(path)
 	visitMap := make(map[string]bool)
 

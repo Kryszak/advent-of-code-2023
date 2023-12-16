@@ -10,9 +10,7 @@ const redCount = 12
 const greenCount = 13
 const blueCount = 14
 
-func Part1(path string) int {
-	answer := 0
-
+func Part1(path string) (answer int) {
 	fileScanner := common.FileScanner(path)
 
 	for fileScanner.Scan() {
