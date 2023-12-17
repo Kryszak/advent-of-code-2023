@@ -9,21 +9,17 @@ import (
 
 const (
 	start = 'S'
-	north = 'N'
-	south = 'S'
-	east  = 'E'
-	west  = 'W'
 )
 
 type point struct {
 	x, y      int
 	pipe      rune
-	direction rune
+	direction common.Direction
 }
 
 type pointCandidate struct {
 	x, y      int
-	direction rune
+	direction common.Direction
 }
 
 func loadInput(path string) (lines []string) {
@@ -41,7 +37,7 @@ func convertCharacter(raw byte) rune {
 	return character
 }
 
-func getPointAt(maze []string, x int, y int, direction rune) (point, error) {
+func getPointAt(maze []string, x int, y int, direction common.Direction) (point, error) {
 	if x < 0 || x == len(maze) || y < 0 || y == len(maze[x]) {
 		return point{}, fmt.Errorf("Out of bounds")
 	}
@@ -52,7 +48,7 @@ func locateStartPointCoordinates(maze []string) (p point) {
 	for i := 0; i < len(maze); i++ {
 		for j := 0; j < len(maze[i]); j++ {
 			if maze[i][j] == start {
-				return point{i, j, convertCharacter(maze[i][j]), north}
+				return point{i, j, convertCharacter(maze[i][j]), common.North}
 			}
 		}
 	}
@@ -63,10 +59,10 @@ func getPossiblePathStarts(startingPoint point, maze []string) (points []point) 
 	var pointsAround []point
 
 	pointCandidates := []pointCandidate{
-		{startingPoint.x - 1, startingPoint.y, north},
-		{startingPoint.x + 1, startingPoint.y, south},
-		{startingPoint.x, startingPoint.y - 1, west},
-		{startingPoint.x, startingPoint.y + 1, east},
+		{startingPoint.x - 1, startingPoint.y, common.North},
+		{startingPoint.x + 1, startingPoint.y, common.South},
+		{startingPoint.x, startingPoint.y - 1, common.West},
+		{startingPoint.x, startingPoint.y + 1, common.East},
 	}
 
 	for _, candidate := range pointCandidates {
@@ -82,11 +78,11 @@ func getPossiblePathStarts(startingPoint point, maze []string) (points []point) 
 func getNextPoint(maze []string, currentPoint point) point {
 	var nextPoint point
 	var x, y int
-	var nextDirection rune
+	var nextDirection common.Direction
 	direction := currentPoint.direction
 	switch currentPoint.pipe {
 	case '|':
-		if direction == north {
+		if direction == common.North {
 			x = currentPoint.x - 1
 		} else {
 			x = currentPoint.x + 1
@@ -94,7 +90,7 @@ func getNextPoint(maze []string, currentPoint point) point {
 		y = currentPoint.y
 		nextDirection = direction
 	case '-':
-		if direction == east {
+		if direction == common.East {
 			y = currentPoint.y + 1
 		} else {
 			y = currentPoint.y - 1
@@ -102,44 +98,44 @@ func getNextPoint(maze []string, currentPoint point) point {
 		x = currentPoint.x
 		nextDirection = direction
 	case 'L':
-		if direction == west {
+		if direction == common.West {
 			x = currentPoint.x - 1
 			y = currentPoint.y
-			nextDirection = north
+			nextDirection = common.North
 		} else {
 			x = currentPoint.x
 			y = currentPoint.y + 1
-			nextDirection = east
+			nextDirection = common.East
 		}
 	case 'J':
-		if direction == east {
+		if direction == common.East {
 			x = currentPoint.x - 1
 			y = currentPoint.y
-			nextDirection = north
+			nextDirection = common.North
 		} else {
 			x = currentPoint.x
 			y = currentPoint.y - 1
-			nextDirection = west
+			nextDirection = common.West
 		}
 	case '7':
-		if direction == east {
+		if direction == common.East {
 			x = currentPoint.x + 1
 			y = currentPoint.y
-			nextDirection = south
+			nextDirection = common.South
 		} else {
 			x = currentPoint.x
 			y = currentPoint.y - 1
-			nextDirection = west
+			nextDirection = common.West
 		}
 	case 'F':
-		if direction == north {
+		if direction == common.North {
 			x = currentPoint.x
 			y = currentPoint.y + 1
-			nextDirection = east
+			nextDirection = common.East
 		} else {
 			x = currentPoint.x + 1
 			y = currentPoint.y
-			nextDirection = south
+			nextDirection = common.South
 		}
 	}
 

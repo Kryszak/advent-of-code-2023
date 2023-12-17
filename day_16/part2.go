@@ -2,6 +2,8 @@ package day16
 
 import (
 	"slices"
+
+	"github.com/Kryszak/aoc2023/common"
 )
 
 func copyCavern(cavern [][]tile) [][]tile {
@@ -20,24 +22,24 @@ func Part2(path string) (answer int) {
 	for y := 0; y < len(cavern[0]); y++ {
 		cavernCopy := copyCavern(cavern)
 		visitMap := make(map[string]bool)
-		markBeams(cavernCopy, visitMap, 0, y, south)
+		markBeams(cavernCopy, visitMap, 0, y, common.South)
 		energizedTilesCount = append(energizedTilesCount, sumEnergizedTiles(cavernCopy))
 
 		cavernCopy = copyCavern(cavern)
 		visitMap = make(map[string]bool)
-		markBeams(cavernCopy, visitMap, len(cavernCopy)-1, y, north)
+		markBeams(cavernCopy, visitMap, len(cavernCopy)-1, y, common.North)
 		energizedTilesCount = append(energizedTilesCount, sumEnergizedTiles(cavernCopy))
 	}
 
 	for x := 0; x < len(cavern); x++ {
 		cavernCopy := copyCavern(cavern)
 		visitMap := make(map[string]bool)
-		markBeams(cavernCopy, visitMap, x, 0, east)
+		markBeams(cavernCopy, visitMap, x, 0, common.East)
 		energizedTilesCount = append(energizedTilesCount, sumEnergizedTiles(cavernCopy))
 
 		cavernCopy = copyCavern(cavern)
 		visitMap = make(map[string]bool)
-		markBeams(cavernCopy, visitMap, x, len(cavern[x])-1, west)
+		markBeams(cavernCopy, visitMap, x, len(cavern[x])-1, common.West)
 		energizedTilesCount = append(energizedTilesCount, sumEnergizedTiles(cavernCopy))
 	}
 
