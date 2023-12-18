@@ -34,17 +34,8 @@ func printDish(dish [][]rune) {
 	fmt.Println()
 }
 
-func copyDish(dish [][]rune) [][]rune {
-	copied := make([][]rune, len(dish))
-	for i := range dish {
-		copied[i] = make([]rune, len(dish[i]))
-		copy(copied[i], dish[i])
-	}
-	return copied
-}
-
 func tiltNorth(dish [][]rune) [][]rune {
-	tilted := copyDish(dish)
+	tilted := common.Copy(dish)
 	for y := 0; y < len(tilted[0]); y++ {
 		for x := 1; x < len(tilted); x++ {
 			if tilted[x][y] == roundedRock {

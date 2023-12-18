@@ -4,10 +4,12 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"strings"
+
+	"github.com/Kryszak/aoc2023/common"
 )
 
 func tiltSouth(dish [][]rune) [][]rune {
-	tilted := copyDish(dish)
+	tilted := common.Copy(dish)
 	for y := 0; y < len(tilted[0]); y++ {
 		for x := len(tilted) - 1; x >= 0; x-- {
 			if tilted[x][y] == roundedRock {
@@ -23,7 +25,7 @@ func tiltSouth(dish [][]rune) [][]rune {
 }
 
 func tiltWest(dish [][]rune) [][]rune {
-	tilted := copyDish(dish)
+	tilted := common.Copy(dish)
 	for x := 0; x < len(tilted); x++ {
 		for y := 1; y < len(tilted[x]); y++ {
 			if tilted[x][y] == roundedRock {
@@ -39,7 +41,7 @@ func tiltWest(dish [][]rune) [][]rune {
 }
 
 func tiltEast(dish [][]rune) [][]rune {
-	tilted := copyDish(dish)
+	tilted := common.Copy(dish)
 	for x := 0; x < len(tilted); x++ {
 		for y := len(tilted[x]) - 2; y >= 0; y-- {
 			if tilted[x][y] == roundedRock {
@@ -90,7 +92,7 @@ func Part2(path string) (answer int) {
 			break
 		}
 		hashedTilts[hash] = i
-		tiltedCombinations = append(tiltedCombinations, copyDish(dish))
+		tiltedCombinations = append(tiltedCombinations, common.Copy(dish))
 	}
 
 	finalDishIndex := (iterations-iterationsBeforeRepeat)%repeatPeriod + iterationsBeforeRepeat - 1
