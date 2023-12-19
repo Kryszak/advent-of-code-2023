@@ -2,6 +2,7 @@ package day18
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
 	"github.com/Kryszak/aoc2023/common"
@@ -50,12 +51,9 @@ func printLagoon(lagoon [][]rune) {
 	}
 }
 
-func Part1(path string) (answer int) {
-	steps := loadData(path)
-
-	// trench := make([]point, 0)
-
+func getOutline(steps []step) [][]rune {
 	trench := make(map[point]bool)
+	var lagoon [][]rune
 
 	x, y := 0, 0
 	trench[point{x, y}] = true
@@ -106,47 +104,85 @@ func Part1(path string) (answer int) {
 	height = height - heightOffset + 1
 	width = width - widthOffset + 1
 
-	var lagoon [][]rune
-
-	for x := 0; x < height; x++ {
+	for i := 0; i < height; i++ {
 		lagoon = append(lagoon, make([]rune, width))
-		for y := 0; y < len(lagoon[x]); y++ {
-			if _, ok := trench[point{x - heightOffset, y - widthOffset}]; ok {
-				lagoon[x][y] = '#'
+		for j := 0; j < len(lagoon[i]); j++ {
+			if _, ok := trench[point{i - common.Abs(heightOffset), j - common.Abs(widthOffset)}]; ok {
+				lagoon[i][j] = '#'
 			} else {
-				lagoon[x][y] = '.'
+				lagoon[i][j] = '.'
 			}
 		}
 	}
+	return lagoon
+}
 
-	for _, row := range lagoon {
-		var leftBound, rightBound int
-		for y := 0; y < len(row); y++ {
-			if row[y] == '#' {
-				leftBound = y
+func getStartPoint(lagoon [][]rune) (startX, startY int) {
+	for i, row := range lagoon {
+		first := slices.Index(row, '#')
+		var last int
+		for j := len(row) - 1; j > first; j-- {
+			if row[j] == '#' {
+				last = j
 				break
 			}
 		}
-		for y := len(row) - 1; y >= 0; y-- {
-			if row[y] == '#' {
-				rightBound = y
-				break
+		for j := first; j < last; j++ {
+			if row[j] == '.' {
+				startX = i
+				startY = j
+				return startX, startY
 			}
-		}
-		for y := leftBound; y < rightBound; y++ {
-			row[y] = '#'
 		}
 	}
+	return 0, 0
+}
 
-	printLagoon(lagoon)
+func floodFill(startX, startY int, lagoon [][]rune) {
+	x := startX
+	y := startY
 
+	if lagoon[x][y] == '#' {
+		return
+	}
+
+	if lagoon[x][y] == '.' {
+		lagoon[x][y] = '#'
+	}
+
+	if x > 0 {
+		floodFill(x-1, y, lagoon)
+	}
+	if x < len(lagoon)-1 {
+		floodFill(x+1, y, lagoon)
+	}
+	if y > 0 {
+		floodFill(x, y-1, lagoon)
+	}
+	if y < len(lagoon[x])-1 {
+		floodFill(x, y+1, lagoon)
+	}
+}
+
+func calculateLagoonScore(lagoon [][]rune) (result int) {
 	for _, row := range lagoon {
 		for _, column := range row {
 			if column == '#' {
-				answer++
+				result++
 			}
 		}
 	}
+	return result
+}
+
+func Part1(path string) (answer int) {
+	steps := loadData(path)
+	lagoon := getOutline(steps)
+
+	startX, startY := getStartPoint(lagoon)
+	floodFill(startX, startY, lagoon)
+
+	answer = calculateLagoonScore(lagoon)
 
 	return answer
 }
