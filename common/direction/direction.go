@@ -1,4 +1,4 @@
-package common
+package direction 
 
 type Direction int
 

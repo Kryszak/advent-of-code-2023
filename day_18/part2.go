@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/Kryszak/aoc2023/common"
+	"github.com/Kryszak/aoc2023/common/direction"
 )
 
 func loadDataPart2(path string) (steps []step) {
@@ -15,18 +16,18 @@ func loadDataPart2(path string) (steps []step) {
 		line := strings.Fields(fileScanner.Text())[2]
 		line = line[2 : len(line)-1]
 		count, _ := strconv.ParseInt(line[0:len(line)-1], 16, 64)
-		var direction common.Direction
+		var dir direction.Direction
 		switch line[len(line)-1] {
 		case '0':
-			direction = common.East
+			dir = direction.East
 		case '1':
-			direction = common.South
+			dir = direction.South
 		case '2':
-			direction = common.West
+			dir = direction.West
 		case '3':
-			direction = common.North
+			dir = direction.North
 		}
-		steps = append(steps, step{direction, int(count)})
+		steps = append(steps, step{dir, int(count)})
 	}
 
 	return steps
@@ -38,22 +39,22 @@ func getOutlinePoints(steps []step) (points []point) {
 
 	for _, step := range steps {
 		switch step.dir {
-		case common.North:
+		case direction.North:
 			for i := x; i >= x-step.count; i-- {
 				points = append(points, point{i, y})
 			}
 			x = x - step.count
-		case common.South:
+		case direction.South:
 			for i := x; i <= x+step.count; i++ {
 				points = append(points, point{i, y})
 			}
 			x = x + step.count
-		case common.East:
+		case direction.East:
 			for j := y; j <= y+step.count; j++ {
 				points = append(points, point{x, j})
 			}
 			y = y + step.count
-		case common.West:
+		case direction.West:
 			for j := y; j >= y-step.count; j-- {
 				points = append(points, point{x, j})
 			}

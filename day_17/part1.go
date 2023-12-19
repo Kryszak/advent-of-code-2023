@@ -2,7 +2,9 @@ package day17
 
 import (
 	"fmt"
+
 	"github.com/Kryszak/aoc2023/common"
+	"github.com/Kryszak/aoc2023/common/direction"
 	pq "github.com/emirpasic/gods/queues/priorityqueue"
 )
 
@@ -38,13 +40,13 @@ func loadInput(path string) (nodes [][]node) {
 func bfs(nodes [][]node, endNode node, minStraight, maxStraight int) int {
 	type queueEntry struct {
 		x, y     int
-		dir      common.Direction
+		dir      direction.Direction
 		heatLoss int
 		straight int
 	}
 	type cacheEntry struct {
 		x, y     int
-		dir      common.Direction
+		dir      direction.Direction
 		straight int
 	}
 
@@ -58,13 +60,13 @@ func bfs(nodes [][]node, endNode node, minStraight, maxStraight int) int {
 		x:        0,
 		y:        1,
 		straight: 1,
-		dir:      common.East,
+		dir:      direction.East,
 	})
 	q.Enqueue(queueEntry{
 		x:        1,
 		y:        0,
 		straight: 1,
-		dir:      common.South,
+		dir:      direction.South,
 	})
 	cache := make(map[cacheEntry]int)
 
@@ -92,24 +94,24 @@ func bfs(nodes [][]node, endNode node, minStraight, maxStraight int) int {
 		if entry.straight >= minStraight {
 			xLeft, yLeft := entry.x, entry.y
 			xRight, yRight := entry.x, entry.y
-			var dirLeft, dirRight common.Direction
+			var dirLeft, dirRight direction.Direction
 
 			switch entry.dir {
-			case common.North, common.South:
+			case direction.North, direction.South:
 				{
 					yLeft--
-					dirLeft = common.West
+					dirLeft = direction.West
 
 					yRight++
-					dirRight = common.East
+					dirRight = direction.East
 				}
-			case common.East, common.West:
+			case direction.East, direction.West:
 				{
 					xLeft--
-					dirLeft = common.North
+					dirLeft = direction.North
 
 					xRight++
-					dirRight = common.South
+					dirRight = direction.South
 				}
 			}
 
@@ -133,13 +135,13 @@ func bfs(nodes [][]node, endNode node, minStraight, maxStraight int) int {
 		if entry.straight < maxStraight {
 			x, y := entry.x, entry.y
 			switch entry.dir {
-			case common.North:
+			case direction.North:
 				x--
-			case common.South:
+			case direction.South:
 				x++
-			case common.East:
+			case direction.East:
 				y++
-			case common.West:
+			case direction.West:
 				y--
 			}
 			q.Enqueue(queueEntry{

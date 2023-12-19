@@ -6,10 +6,11 @@ import (
 	"strings"
 
 	"github.com/Kryszak/aoc2023/common"
+	"github.com/Kryszak/aoc2023/common/direction"
 )
 
 type step struct {
-	dir   common.Direction
+	dir   direction.Direction
 	count int
 }
 
@@ -22,19 +23,19 @@ func loadData(path string) (steps []step) {
 
 	for fileScanner.Scan() {
 		line := strings.Fields(fileScanner.Text())
-		var direction common.Direction
+		var dir direction.Direction
 		count := common.Atoi(line[1])
 		switch line[0] {
 		case "R":
-			direction = common.East
+			dir = direction.East
 		case "D":
-			direction = common.South
+			dir = direction.South
 		case "L":
-			direction = common.West
+			dir = direction.West
 		case "U":
-			direction = common.North
+			dir = direction.North
 		}
-		steps = append(steps, step{direction, count})
+		steps = append(steps, step{dir, count})
 	}
 
 	return steps
@@ -58,22 +59,22 @@ func getOutline(steps []step) [][]rune {
 
 	for _, step := range steps {
 		switch step.dir {
-		case common.North:
+		case direction.North:
 			for i := x; i >= x-step.count; i-- {
 				trench[point{i, y}] = true
 			}
 			x = x - step.count
-		case common.South:
+		case direction.South:
 			for i := x; i <= x+step.count; i++ {
 				trench[point{i, y}] = true
 			}
 			x = x + step.count
-		case common.East:
+		case direction.East:
 			for j := y; j <= y+step.count; j++ {
 				trench[point{x, j}] = true
 			}
 			y = y + step.count
-		case common.West:
+		case direction.West:
 			for j := y; j >= y-step.count; j-- {
 				trench[point{x, j}] = true
 			}

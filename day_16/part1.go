@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/Kryszak/aoc2023/common"
+	"github.com/Kryszak/aoc2023/common/direction"
 )
 
 type tile struct {
@@ -41,7 +42,7 @@ func printCavern(cavern [][]tile) {
 	}
 }
 
-func markBeams(cavern [][]tile, visitMap map[string]bool, x, y int, dir common.Direction) {
+func markBeams(cavern [][]tile, visitMap map[string]bool, x, y int, dir direction.Direction) {
 	if x < 0 || x >= len(cavern) || y < 0 || y >= len(cavern[x]) {
 		return
 	}
@@ -62,64 +63,64 @@ func markBeams(cavern [][]tile, visitMap map[string]bool, x, y int, dir common.D
 	case '.':
 		{
 			switch dir {
-			case common.North:
-				markBeams(cavern, visitMap, x-1, y, common.North)
-			case common.South:
-				markBeams(cavern, visitMap, x+1, y, common.South)
-			case common.East:
-				markBeams(cavern, visitMap, x, y+1, common.East)
-			case common.West:
-				markBeams(cavern, visitMap, x, y-1, common.West)
+			case direction.North:
+				markBeams(cavern, visitMap, x-1, y, direction.North)
+			case direction.South:
+				markBeams(cavern, visitMap, x+1, y, direction.South)
+			case direction.East:
+				markBeams(cavern, visitMap, x, y+1, direction.East)
+			case direction.West:
+				markBeams(cavern, visitMap, x, y-1, direction.West)
 			}
 		}
 	case '|':
 		{
 			switch dir {
-			case common.North:
-				markBeams(cavern, visitMap, x-1, y, common.North)
-			case common.South:
-				markBeams(cavern, visitMap, x+1, y, common.South)
-			case common.East, common.West:
-				markBeams(cavern, visitMap, x-1, y, common.North)
-				markBeams(cavern, visitMap, x+1, y, common.South)
+			case direction.North:
+				markBeams(cavern, visitMap, x-1, y, direction.North)
+			case direction.South:
+				markBeams(cavern, visitMap, x+1, y, direction.South)
+			case direction.East, direction.West:
+				markBeams(cavern, visitMap, x-1, y, direction.North)
+				markBeams(cavern, visitMap, x+1, y, direction.South)
 			}
 		}
 	case '-':
 		{
 			switch dir {
-			case common.North, common.South:
-				markBeams(cavern, visitMap, x, y-1, common.West)
-				markBeams(cavern, visitMap, x, y+1, common.East)
-			case common.East:
-				markBeams(cavern, visitMap, x, y+1, common.East)
-			case common.West:
-				markBeams(cavern, visitMap, x, y-1, common.West)
+			case direction.North, direction.South:
+				markBeams(cavern, visitMap, x, y-1, direction.West)
+				markBeams(cavern, visitMap, x, y+1, direction.East)
+			case direction.East:
+				markBeams(cavern, visitMap, x, y+1, direction.East)
+			case direction.West:
+				markBeams(cavern, visitMap, x, y-1, direction.West)
 			}
 		}
 	case '/':
 		{
 			switch dir {
-			case common.North:
-				markBeams(cavern, visitMap, x, y+1, common.East)
-			case common.South:
-				markBeams(cavern, visitMap, x, y-1, common.West)
-			case common.East:
-				markBeams(cavern, visitMap, x-1, y, common.North)
-			case common.West:
-				markBeams(cavern, visitMap, x+1, y, common.South)
+			case direction.North:
+				markBeams(cavern, visitMap, x, y+1, direction.East)
+			case direction.South:
+				markBeams(cavern, visitMap, x, y-1, direction.West)
+			case direction.East:
+				markBeams(cavern, visitMap, x-1, y, direction.North)
+			case direction.West:
+				markBeams(cavern, visitMap, x+1, y, direction.South)
 			}
 		}
 	case '\\':
 		{
 			switch dir {
-			case common.North:
-				markBeams(cavern, visitMap, x, y-1, common.West)
-			case common.South:
-				markBeams(cavern, visitMap, x, y+1, common.East)
-			case common.East:
-				markBeams(cavern, visitMap, x+1, y, common.South)
-			case common.West:
-				markBeams(cavern, visitMap, x-1, y, common.North)
+			case direction.North:
+				markBeams(cavern, visitMap, x, y-1, direction.West)
+			case direction.South:
+				markBeams(cavern, visitMap, x, y+1, direction.East)
+			case direction.East:
+				markBeams(cavern, visitMap, x+1, y, direction.South)
+			case direction.West:
+				markBeams(cavern, visitMap, x-1, y, direction.North)
 			}
 		}
 	}
@@ -140,7 +141,7 @@ func Part1(path string) (answer int) {
 	cavern := loadInput(path)
 	visitMap := make(map[string]bool)
 
-	markBeams(cavern, visitMap, 0, 0, common.East)
+	markBeams(cavern, visitMap, 0, 0, direction.East)
 	answer = sumEnergizedTiles(cavern)
 	return answer
 }

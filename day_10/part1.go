@@ -5,6 +5,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/Kryszak/aoc2023/common"
+	"github.com/Kryszak/aoc2023/common/direction"
 )
 
 const (
@@ -14,12 +15,12 @@ const (
 type point struct {
 	x, y      int
 	pipe      rune
-	direction common.Direction
+	dir direction.Direction
 }
 
 type pointCandidate struct {
 	x, y      int
-	direction common.Direction
+	dir direction.Direction
 }
 
 func loadInput(path string) (lines []string) {
@@ -37,18 +38,18 @@ func convertCharacter(raw byte) rune {
 	return character
 }
 
-func getPointAt(maze []string, x int, y int, direction common.Direction) (point, error) {
+func getPointAt(maze []string, x int, y int, dir direction.Direction) (point, error) {
 	if x < 0 || x == len(maze) || y < 0 || y == len(maze[x]) {
 		return point{}, fmt.Errorf("Out of bounds")
 	}
-	return point{x, y, convertCharacter(maze[x][y]), direction}, nil
+	return point{x, y, convertCharacter(maze[x][y]), dir}, nil
 }
 
 func locateStartPointCoordinates(maze []string) (p point) {
 	for i := 0; i < len(maze); i++ {
 		for j := 0; j < len(maze[i]); j++ {
 			if maze[i][j] == start {
-				return point{i, j, convertCharacter(maze[i][j]), common.North}
+				return point{i, j, convertCharacter(maze[i][j]), direction.North}
 			}
 		}
 	}
@@ -59,14 +60,14 @@ func getPossiblePathStarts(startingPoint point, maze []string) (points []point) 
 	var pointsAround []point
 
 	pointCandidates := []pointCandidate{
-		{startingPoint.x - 1, startingPoint.y, common.North},
-		{startingPoint.x + 1, startingPoint.y, common.South},
-		{startingPoint.x, startingPoint.y - 1, common.West},
-		{startingPoint.x, startingPoint.y + 1, common.East},
+		{startingPoint.x - 1, startingPoint.y, direction.North},
+		{startingPoint.x + 1, startingPoint.y, direction.South},
+		{startingPoint.x, startingPoint.y - 1, direction.West},
+		{startingPoint.x, startingPoint.y + 1, direction.East},
 	}
 
 	for _, candidate := range pointCandidates {
-		p, err := getPointAt(maze, candidate.x, candidate.y, candidate.direction)
+		p, err := getPointAt(maze, candidate.x, candidate.y, candidate.dir)
 		if err == nil && p.pipe != '.' {
 			pointsAround = append(pointsAround, p)
 		}
@@ -78,64 +79,64 @@ func getPossiblePathStarts(startingPoint point, maze []string) (points []point) 
 func getNextPoint(maze []string, currentPoint point) point {
 	var nextPoint point
 	var x, y int
-	var nextDirection common.Direction
-	direction := currentPoint.direction
+	var nextDirection direction.Direction
+	dir := currentPoint.dir
 	switch currentPoint.pipe {
 	case '|':
-		if direction == common.North {
+		if dir == direction.North {
 			x = currentPoint.x - 1
 		} else {
 			x = currentPoint.x + 1
 		}
 		y = currentPoint.y
-		nextDirection = direction
+		nextDirection = dir
 	case '-':
-		if direction == common.East {
+		if dir == direction.East {
 			y = currentPoint.y + 1
 		} else {
 			y = currentPoint.y - 1
 		}
 		x = currentPoint.x
-		nextDirection = direction
+		nextDirection = dir
 	case 'L':
-		if direction == common.West {
+		if dir == direction.West {
 			x = currentPoint.x - 1
 			y = currentPoint.y
-			nextDirection = common.North
+			nextDirection = direction.North
 		} else {
 			x = currentPoint.x
 			y = currentPoint.y + 1
-			nextDirection = common.East
+			nextDirection = direction.East
 		}
 	case 'J':
-		if direction == common.East {
+		if dir == direction.East {
 			x = currentPoint.x - 1
 			y = currentPoint.y
-			nextDirection = common.North
+			nextDirection = direction.North
 		} else {
 			x = currentPoint.x
 			y = currentPoint.y - 1
-			nextDirection = common.West
+			nextDirection = direction.West
 		}
 	case '7':
-		if direction == common.East {
+		if dir == direction.East {
 			x = currentPoint.x + 1
 			y = currentPoint.y
-			nextDirection = common.South
+			nextDirection = direction.South
 		} else {
 			x = currentPoint.x
 			y = currentPoint.y - 1
-			nextDirection = common.West
+			nextDirection = direction.West
 		}
 	case 'F':
-		if direction == common.North {
+		if dir == direction.North {
 			x = currentPoint.x
 			y = currentPoint.y + 1
-			nextDirection = common.East
+			nextDirection = direction.East
 		} else {
 			x = currentPoint.x + 1
 			y = currentPoint.y
-			nextDirection = common.South
+			nextDirection = direction.South
 		}
 	}
 
