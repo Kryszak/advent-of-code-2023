@@ -11,7 +11,6 @@ import (
 type step struct {
 	dir   common.Direction
 	count int
-	color string
 }
 
 type point struct {
@@ -35,8 +34,7 @@ func loadData(path string) (steps []step) {
 		case "U":
 			direction = common.North
 		}
-		color := strings.ReplaceAll(strings.ReplaceAll(line[2], ")", ""), "(", "")
-		steps = append(steps, step{direction, count, color})
+		steps = append(steps, step{direction, count})
 	}
 
 	return steps
