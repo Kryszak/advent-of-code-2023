@@ -24,6 +24,7 @@ import (
 	day18 "github.com/Kryszak/aoc2023/day_18"
 	day19 "github.com/Kryszak/aoc2023/day_19"
 	day20 "github.com/Kryszak/aoc2023/day_20"
+	day21 "github.com/Kryszak/aoc2023/day_21"
 )
 
 func main() {
@@ -106,4 +107,8 @@ func main() {
 	fmt.Println("*** Day 20 ***")
 	common.TimeMethodCall("day_20/input.txt", day20.Part1)
 	common.TimeMethodCall("day_20/input.txt", day20.Part2)
+
+	fmt.Println("*** Day 21 ***")
+	common.TimeMethodCall("day_21/input.txt", day21.Part1)
+	common.TimeMethodCall("day_21/input.txt", day21.Part2)
 }
