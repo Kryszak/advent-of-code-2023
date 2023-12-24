@@ -45,17 +45,6 @@ func getRequiredStepsForNode(nodeMap map[string]node, stepSequence string, start
 	return requiredSteps
 }
 
-func greatestCommonDivisor(first int, second int) int {
-	for second != 0 {
-		first, second = second, first%second
-	}
-	return first
-}
-
-func lowestCommonMultiple(first int, second int) int {
-	return first * second / greatestCommonDivisor(first, second)
-}
-
 func Part2(path string) (answer int) {
 	answer = 1
 
@@ -73,9 +62,6 @@ func Part2(path string) (answer int) {
 		requiredStepsPerNode = append(requiredStepsPerNode, getRequiredStepsForNode(nodeMap, stepSequence, node))
 	}
 
-	for _, stepCount := range requiredStepsPerNode {
-		answer = lowestCommonMultiple(answer, stepCount)
-	}
-
+	answer = common.Lcm(requiredStepsPerNode)
 	return answer
 }

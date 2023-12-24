@@ -1,17 +1,10 @@
 package day20
 
-import "slices"
+import (
+	"slices"
 
-func greatestCommonDivisor(first int, second int) int {
-	for second != 0 {
-		first, second = second, first%second
-	}
-	return first
-}
-
-func lowestCommonMultiple(first int, second int) int {
-	return first * second / greatestCommonDivisor(first, second)
-}
+	"github.com/Kryszak/aoc2023/common"
+)
 
 func allValuesArePositive(values map[string]int) bool {
 	for _, value := range values {
@@ -53,12 +46,12 @@ func countRequiredIterations(machines map[string]module) int {
 			}
 		}
 	}
-	result := 1
+	values := make([]int, 0)
 	for _, value := range firstHighPulse {
-		result = lowestCommonMultiple(result, value)
+		values = append(values, value)
 	}
 
-	return result
+	return common.Lcm(values)
 }
 
 func Part2(path string) (answer int) {
