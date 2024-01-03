@@ -17,3 +17,5 @@ jobs:
         run: go test ./day* -coverprofile=coverage.out
       - name: Upload coverage report
         run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report --force-coverage-parser go -r coverage.out
+        with:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
