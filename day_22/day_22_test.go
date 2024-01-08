@@ -2,7 +2,7 @@ package day22
 
 import "testing"
 
-func TestDay19(t *testing.T) {
+func TestDay22(t *testing.T) {
 	t.Run("Part1", func(t *testing.T) {
 		got := Part1("input.txt")
 		want := 0
